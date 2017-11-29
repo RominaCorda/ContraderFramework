@@ -64,7 +64,7 @@ public class GommaView implements View {
                 gommaService.insertGomma(new Gomma(null, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season));
                 break;
             case "allBrandForVehicle":
-                System.out.println("Scegli il tuo veicolo (auto|moto|commerciale");
+                System.out.println("Scegli il tuo veicolo (auto|moto|commerciale)");
                 String type = getInput();
                 List<String> brands = gommaService.getAllManufacturerForTypeVehicle(type);
                 System.out.println("----Brand disponibili----");

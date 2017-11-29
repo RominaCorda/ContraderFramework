@@ -23,7 +23,6 @@ primary key(U_id)
 
 insert into contrader.users (U_id, username, password, firstname, lastname, dateofbirth, CF, businessname, vat, town, CAP, city, address, telephone, role) values (1, 'pippo', 'paperino', 'pippo', 'paperino','28/11/1970', 'PPRNPPO70RX90A', 'paperino.srl', '010203040506', 'Ariano Irpino', '83031', 'Avellino', 'Via Afflitto', '0825362548', 'User');
 insert into contrader.users (U_id, username, password, firstname, lastname, dateofbirth, CF, businessname, vat, town, CAP, city, address, telephone, role) values (2,'ciccio', 'bello', 'ciccio', 'bello', '09/09/1982', 'BLLCCI82XD97O', 'bello.srl', '987965453212', 'Benevento','82100', 'Benevento', 'Viale Mellusi 9', '0824387965', 'Admin');
-
 create table contrader.gomme (
 G_id int(50) not null auto_increment,
 typevehicle varchar(30),
