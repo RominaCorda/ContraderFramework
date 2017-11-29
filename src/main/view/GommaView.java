@@ -70,6 +70,10 @@ public class GommaView implements View {
                 System.out.println("----Brand disponibili----");
                 System.out.println();
                 brands.forEach(String->System.out.println(String));
+                System.out.println("Scegli il Brand ");
+                String brand = getInput();
+                List<Gomma> listaGomma = gommaService.getAllGommeForBrand(type, brand);
+                listaGomma.forEach(gomma->System.out.println(gomma));
                 break;
         }
     }

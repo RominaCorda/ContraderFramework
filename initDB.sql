@@ -23,6 +23,8 @@ primary key(U_id)
 
 insert into contrader.users (U_id, username, password, firstname, lastname, dateofbirth, CF, businessname, vat, town, CAP, city, address, telephone, role) values (1, 'pippo', 'paperino', 'pippo', 'paperino','28/11/1970', 'PPRNPPO70RX90A', 'paperino.srl', '010203040506', 'Ariano Irpino', '83031', 'Avellino', 'Via Afflitto', '0825362548', 'User');
 insert into contrader.users (U_id, username, password, firstname, lastname, dateofbirth, CF, businessname, vat, town, CAP, city, address, telephone, role) values (2,'ciccio', 'bello', 'ciccio', 'bello', '09/09/1982', 'BLLCCI82XD97O', 'bello.srl', '987965453212', 'Benevento','82100', 'Benevento', 'Viale Mellusi 9', '0824387965', 'Admin');
+insert into contrader.users (U_id, username, password, firstname, lastname, dateofbirth, CF, businessname, vat, town, CAP, city, address, telephone, role) values (3,'paolo', 'rossi', 'paolo', 'rossi', '03/03/1987', 'RSSPLA87FG85A', 'rossi.sas', '6548973241', 'Roma','00100', 'Roma', 'Via Dante 27', '06987512', 'Admin');
+insert into contrader.users (U_id, username, password, firstname, lastname, dateofbirth, CF, businessname, vat, town, CAP, city, address, telephone, role) values (4,'luca', 'bianchi', 'luca', 'bianchi', '29/01/1967', 'BNCHLCA67FD86D', 'bianch.sas', '35795145682', 'Napoli','80017', 'Napoli', 'Via irgilio 89', '0812569874', 'User');
 create table contrader.gomme (
 G_id int(50) not null auto_increment,
 typevehicle varchar(30),
@@ -40,6 +42,8 @@ primary key(G_id)
 insert into contrader.gomme (G_id, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season) values (1, 'auto','Trelleborg-B50', 'Trelleborg', 321.13, 125, 125, 125, 100, '90', '4 stagioni');
 insert into contrader.gomme (G_id, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season) values (2,'moto', 'SuperG-876 ', 'Super Gomme', 213.176, 105, 105, 105, 97, '80', 'Estiva');
 insert into contrader.gomme (G_id, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season) values (3, 'auto', 'Pir-XD20 ', 'Pirelli', 300.25, 115, 115, 115, 205.31, '100', 'Invernale');
+insert into contrader.gomme (G_id, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season) values (4,'commerciale', 'BR-298 ', 'Bridgestone', 521036, 258, 258, 258, 87, '78', 'Estiva');
+
 
 create table contrader.vehicle (
 V_id int(50) not null auto_increment,
@@ -53,6 +57,7 @@ primary key(V_id)
 insert into contrader.vehicle (V_id, brand, model, power, version, capacity) values (1, 'Fiat', 'Punto', 'Evo', 'Diesel', '1.368');
 insert into contrader.vehicle (V_id, brand, model, power, version, capacity) values (2, 'Opel', 'Corsa', '2007', 'Diesel', '1.200');
 insert into contrader.vehicle (V_id, brand, model, power, version, capacity) values (3, 'Kia', 'Rio', '2016', 'Diesel', '1.200');
+insert into contrader.vehicle (V_id, brand, model, power, version, capacity) values (4, 'Fiat', 'Punto', 'Van Easy', 'Diesel', '1.368');
 
 
 
