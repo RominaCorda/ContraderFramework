@@ -2,14 +2,31 @@ package main.model;
 
 public class Gomma {
 
+    private Integer G_id;
+    private String typevehicle;
     private String model;
     private String manufacturer;
     private double price;
+    private double width;
+    private double height;
+    private double diameter;
+    private double weight;
+    private String speed;
+    private String season;
 
-    public Gomma(String model, String manufacturer, double price) {
+
+    public Gomma(Integer g_id, String typevehicle, String model, String manufacturer, double price, double width, double height, double diameter, double weight, String speed, String season) {
+        G_id = g_id;
+        this.typevehicle = typevehicle;
         this.model = model;
         this.manufacturer = manufacturer;
         this.price = price;
+        this.width = width;
+        this.height = height;
+        this.diameter = diameter;
+        this.weight = weight;
+        this.speed = speed;
+        this.season = season;
     }
 
     public String getModel() {
@@ -34,6 +51,70 @@ public class Gomma {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getG_id() {
+        return G_id;
+    }
+
+    public void setG_id(int g_id) {
+        G_id = g_id;
+    }
+
+    public String getTypevehicle() {
+        return typevehicle;
+    }
+
+    public void setTypevehicle(String typevehicle) {
+        this.typevehicle = typevehicle;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getDiameter() {
+        return diameter;
+    }
+
+    public void setDiameter(double diameter) {
+        this.diameter = diameter;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public String getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(String speed) {
+        this.speed = speed;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
     }
 
     @Override
@@ -61,7 +142,16 @@ public class Gomma {
 
     @Override
     public String toString() {
-        return "Model: " + model + "\nManufacturer: " +manufacturer + "\nPrice: "+price+"\n";
-
+        return "Modello: " + model +
+                "\nVeicolo: " + typevehicle +
+                "\nProduttore: " + manufacturer +
+                "\nPrezzo: "+ price +
+                "\nLarghezza: " + width +
+                "\nAltezza: " + height +
+                "\nDiametro: " + diameter +
+                "\nCarico: " + weight +
+                "\nVelocità: " + speed +
+                "\nStagione: " + season +
+                "\n";
     }
 }
