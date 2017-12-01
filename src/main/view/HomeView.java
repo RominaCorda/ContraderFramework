@@ -32,7 +32,8 @@ public class HomeView implements View {
                 System.out.println("");
                 System.out.println("1) Visualizza gomme disponibili");
                 System.out.println("2) Visualizza brand gomma per tipologia veicolo ( auto| moto| commerciale| )");
-                System.out.println("3) Logout");
+                System.out.println("3) Visualizza gomma per tipologia veicolo e dimensioni ( auto| moto| commerciale| )");
+                System.out.println("4) Logout");
                 this.choice = Integer.parseInt(getInput());
                 break;
             case "Admin":
@@ -55,14 +56,14 @@ public class HomeView implements View {
 
         switch (role){
             case "User":
-                if (choice <1 || choice > 3) {
+                if (choice <1 || choice > 4) {
                     Request request = new Request();
                     request.put("role", role);
                     request.put("nomeUtente", nomeUtente);
                     request.put("password", password);
                     MainDispatcher.getInstance().callAction("Home", "doControl", request);
                 }
-                else if (choice == 3)
+                else if (choice == 4)
                     MainDispatcher.getInstance().callAction("Login", "doControl", null);
                 else {
                     Request request = new Request();

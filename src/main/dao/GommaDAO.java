@@ -11,7 +11,7 @@ import java.util.List;
 public class GommaDAO {
 
     private final String QUERY_ALL = "select * from gomme";
-    private final String QUERY_INSERT = "insert into gomme (G_id, typevehicle ,model, manufacturer, price, width, height, diameter, weight, speed, season) values (null,?,?,?,?,?,?,?,?,?,?)";
+    private final String QUERY_INSERT = "insert into gomme (G_id, typevehicle ,model, manufacturer, quantity, price, width, height, diameter, weight, speed, season) values (null,?,?,?,?,?,?,?,?,?,?,?)";
 
     public GommaDAO() {
 
@@ -46,6 +46,7 @@ public class GommaDAO {
                 String typevehicle = resultSet.getString("typevehicle");
                 String model = resultSet.getString("model");
                 String manufacturer = resultSet.getString("manufacturer");
+                double quantity = resultSet.getDouble("quantity");
                 double price = resultSet.getDouble("price");
                 double width = resultSet.getDouble("width");
                 double height = resultSet.getDouble("height");
@@ -53,7 +54,7 @@ public class GommaDAO {
                 double weight = resultSet.getDouble("weight");
                 String speed = resultSet.getString("speed");
                 String season = resultSet.getString("season");
-                gommaBrand.add(new Gomma(G_id,typevehicle,model,manufacturer,price,width,height,diameter,weight,speed,season));
+                gommaBrand.add(new Gomma(G_id,typevehicle,model,manufacturer,quantity,price,width,height,diameter,weight,speed,season));
 
             }
         }
@@ -63,6 +64,46 @@ public class GommaDAO {
         return gommaBrand;
 
     }
+
+
+
+   public List<Gomma> getAllGommeForSize(String type, Double quant, Double wid, Double heig, Double diam){
+      List<Gomma> gommaSize = new ArrayList<>();
+        Connection connection=ConnectionSingleton.getInstance();
+        String querySize="SELECT * FROM gomme WHERE typevehicle=\""+type+"\"  AND quantity =\""+quant+"\" AND width =\""+wid+"\" AND height =\""+heig+"\" AND diameter =\""+diam+"\"";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(querySize);
+            while (resultSet.next()){
+                int G_id = resultSet.getInt("G_id");
+                String typevehicle = resultSet.getString("typevehicle");
+                String model = resultSet.getString("model");
+                String manufacturer = resultSet.getString("manufacturer");
+                double quantity = resultSet.getDouble("quantity");
+                double price = resultSet.getDouble("price");
+                double width = resultSet.getDouble("width");
+                double height = resultSet.getDouble("height");
+                double diameter = resultSet.getDouble("diameter");
+                double weight = resultSet.getDouble("weight");
+                String speed = resultSet.getString("speed");
+                String season = resultSet.getString("season");
+                gommaSize.add(new Gomma(G_id,typevehicle,model,manufacturer,quantity,price,width,height,diameter,weight,speed,season));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+       return gommaSize;
+    }
+
+
+
+
+
+
+
+
+
+
 
     public List<Gomma> getAllGomme () {
         List<Gomma> gomme = new ArrayList<>();
@@ -75,6 +116,7 @@ public class GommaDAO {
                String typevehicle = resultSet.getString("typevehicle");
                String model = resultSet.getString("model");
                String manufacturer = resultSet.getString("manufacturer");
+               double quantity = resultSet.getDouble("quantity");
                double price = resultSet.getDouble("price");
                double width = resultSet.getDouble("width");
                double height = resultSet.getDouble("height");
@@ -82,7 +124,7 @@ public class GommaDAO {
                double weight = resultSet.getDouble("weight");
                String speed = resultSet.getString("speed");
                String season = resultSet.getString("season");
-               gomme.add(new Gomma(G_id,typevehicle,model,manufacturer,price,width,height,diameter,weight,speed,season));
+               gomme.add(new Gomma(G_id,typevehicle,model,manufacturer,quantity,price,width,height,diameter,weight,speed,season));
            }
         }
         catch (SQLException e) {
@@ -98,13 +140,14 @@ public class GommaDAO {
             preparedStatement.setString( 1, gomma.getTypevehicle());
             preparedStatement.setString(2, gomma.getModel());
             preparedStatement.setString(3, gomma.getManufacturer());
-            preparedStatement.setDouble(4, gomma.getPrice());
-            preparedStatement.setDouble(5, gomma.getWidth());
-            preparedStatement.setDouble(6, gomma.getHeight());
-            preparedStatement.setDouble(7, gomma.getDiameter());
-            preparedStatement.setDouble(8, gomma.getWeight());
-            preparedStatement.setString(9, gomma.getSpeed());
-            preparedStatement.setString(10, gomma.getSeason());
+            preparedStatement.setDouble(4, gomma.getQuantity());
+            preparedStatement.setDouble(5, gomma.getPrice());
+            preparedStatement.setDouble(6, gomma.getWidth());
+            preparedStatement.setDouble(7, gomma.getHeight());
+            preparedStatement.setDouble(8, gomma.getDiameter());
+            preparedStatement.setDouble(9, gomma.getWeight());
+            preparedStatement.setString(10, gomma.getSpeed());
+            preparedStatement.setString(11, gomma.getSeason());
 
             return preparedStatement.execute();
         }

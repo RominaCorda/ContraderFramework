@@ -30,6 +30,7 @@ G_id int(50) not null auto_increment,
 typevehicle varchar(30),
 model varchar(50), 
 manufacturer varchar(50), 
+quantity int,
 price float,
 width float,
 height float,
@@ -39,10 +40,10 @@ speed varchar(3),
 season varchar(20),
 primary key(G_id)
 );
-insert into contrader.gomme (G_id, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season) values (1, 'auto','Trelleborg-B50', 'Trelleborg', 321.13, 125, 125, 125, 100, '90', '4 stagioni');
-insert into contrader.gomme (G_id, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season) values (2,'moto', 'SuperG-876 ', 'Super Gomme', 213.176, 105, 105, 105, 97, '80', 'Estiva');
-insert into contrader.gomme (G_id, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season) values (3, 'auto', 'Pir-XD20 ', 'Pirelli', 300.25, 115, 115, 115, 205.31, '100', 'Invernale');
-insert into contrader.gomme (G_id, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season) values (4,'commerciale', 'BR-298 ', 'Bridgestone', 521036, 258, 258, 258, 87, '78', 'Estiva');
+insert into contrader.gomme (G_id, typevehicle, model, manufacturer, quantity, price, width, height, diameter, weight, speed, season) values (1, 'auto','Trelleborg-B50', 'Trelleborg', 8, 321.13, 125, 125, 125, 100, '90', '4 stagioni');
+insert into contrader.gomme (G_id, typevehicle, model, manufacturer, quantity, price, width, height, diameter, weight, speed, season) values (2,'moto', 'SuperG-876 ', 'Super Gomme', 6, 213.176, 105, 105, 105, 97, '80', 'Estiva');
+insert into contrader.gomme (G_id, typevehicle, model, manufacturer, quantity, price, width, height, diameter, weight, speed, season) values (3, 'auto', 'Pir-XD20 ', 'Pirelli', 4, 300.25, 115, 115, 115, 205.31, '100', 'Invernale');
+insert into contrader.gomme (G_id, typevehicle, model, manufacturer, quantity, price, width, height, diameter, weight, speed, season) values (4,'commerciale', 'BR-298 ', 'Bridgestone', 2, 521036, 258, 258, 258, 87, '78', 'Estiva');
 
 
 create table contrader.vehicle (

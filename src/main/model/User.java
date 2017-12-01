@@ -2,7 +2,7 @@ package main.model;
 
 public class User {
 
-    private int U_id;
+    private Integer U_id;
     private String username;
     private String password;
     private String firstname;
@@ -19,7 +19,7 @@ public class User {
     private String role;
 
 
-    public User(int u_id, String username, String password, String firstname, String lastname, String dateofbirth, String CF, String businessname, String vat, String town, String CAP, String city, String address, String telephone, String role) {
+    public User(Integer u_id, String username, String password, String firstname, String lastname, String dateofbirth, String CF, String businessname, String vat, String town, String CAP, String city, String address, String telephone, String role) {
         U_id = u_id;
         this.username = username;
         this.password = password;

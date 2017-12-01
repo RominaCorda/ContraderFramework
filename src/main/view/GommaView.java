@@ -47,6 +47,8 @@ public class GommaView implements View {
                 String model = getInput();
                 System.out.println("Produttore:");
                 String manufacturer = getInput();
+                System.out.println("Quantità:");
+                double quantity = Double.parseDouble(getInput());
                 System.out.println("Prezzo:");
                 double price = Double.parseDouble(getInput());
                 System.out.println("Larghezza:");
@@ -58,25 +60,48 @@ public class GommaView implements View {
                 System.out.println("Carico:");
                 double weight = Double.parseDouble(getInput());
                 System.out.println("Velocità:");
-                String speed  = getInput();
+                String speed = getInput();
                 System.out.println("Stagione:");
                 String season = getInput();
-                gommaService.insertGomma(new Gomma(null, typevehicle, model, manufacturer, price, width, height, diameter, weight, speed, season));
+                gommaService.insertGomma(new Gomma(null, typevehicle, model, manufacturer, quantity,  price, width, height, diameter, weight, speed, season));
                 break;
             case "allBrandForVehicle":
-                System.out.println("Scegli il tuo veicolo (auto|moto|commerciale)");
+                System.out.println("Scegli il tuo veicolo ( auto| moto| commerciale| )");
                 String type = getInput();
                 List<String> brands = gommaService.getAllManufacturerForTypeVehicle(type);
-                System.out.println("----Brand disponibili----");
+                System.out.println(" ----Brand disponibili---- ");
                 System.out.println();
-                brands.forEach(String->System.out.println(String));
-                System.out.println("Scegli il Brand ");
+                brands.forEach(String -> System.out.println(String));
+                System.out.println(" Scegli il Brand ");
                 String brand = getInput();
                 List<Gomma> listaGomma = gommaService.getAllGommeForBrand(type, brand);
-                listaGomma.forEach(gomma->System.out.println(gomma));
+                if (listaGomma.isEmpty()) {
+                    System.out.println(" ----Brand non disponibile---- ");
+                } else {
+                    listaGomma.forEach(gomma -> System.out.println(gomma));
+                }
                 break;
+            case "allSizeForVehicle":
+                System.out.println("Scegli il tuoi veicolo ( auto| moto| commerciale| )");
+                type = getInput();
+                Scanner in= new Scanner(System.in);
+                System.out.println("Pezzi:  ");
+                double quant = in.nextDouble();
+                System.out.println("Larghezza:  ");
+                in.nextLine();
+                double wid = in.nextDouble();
+                System.out.println("Altezza:  ");
+                in.nextLine();
+                double heig = in.nextDouble();
+                System.out.println("Diametro:  ");
+                in.nextLine();
+                double diam = in.nextDouble();
+                List<Gomma> listaSize = gommaService.getAllGommeForSize(type, quant, wid, heig, diam);
+                listaSize.forEach(gomma -> System.out.println(gomma));
         }
     }
+
+
 
     @Override
     public String getInput() {
