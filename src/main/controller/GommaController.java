@@ -34,9 +34,12 @@ public class GommaController implements Controller {
                         request.put("mode", "insert");
                         break;
                     case 2:
-                        request.put("mode", "all");
+                        request.put("mode", "update");
                         break;
                     case 3:
+                        request.put("mode", "all");
+                        break;
+                    case 5:
                         request.put("mode", "allBrandForVehicle");
                         break;
                 }

@@ -44,7 +44,7 @@ insert into contrader.gomme (G_id, typevehicle, model, manufacturer, quantity, p
 insert into contrader.gomme (G_id, typevehicle, model, manufacturer, quantity, price, width, height, diameter, weight, speed, season) values (2,'moto', 'SuperG-876 ', 'Super Gomme', 6, 213.176, 105, 105, 105, 97, '80', 'Estiva');
 insert into contrader.gomme (G_id, typevehicle, model, manufacturer, quantity, price, width, height, diameter, weight, speed, season) values (3, 'auto', 'Pir-XD20 ', 'Pirelli', 4, 300.25, 115, 115, 115, 205.31, '100', 'Invernale');
 insert into contrader.gomme (G_id, typevehicle, model, manufacturer, quantity, price, width, height, diameter, weight, speed, season) values (4,'commerciale', 'BR-298 ', 'Bridgestone', 2, 521036, 258, 258, 258, 87, '78', 'Estiva');
-
+update  contrader.gomme set quantity = 5 where G_id = 1 ;
 
 create table contrader.vehicle (
 V_id int(50) not null auto_increment,

@@ -6,12 +6,16 @@ import main.model.User;
 import main.service.UserService;
 import org.springframework.expression.spel.ast.NullLiteral;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserView implements View {
 
     private UserService userService;
     private String mode;
+    private String role;
+    private String username;
+    private String password;
 
 
     public UserView() {
@@ -23,6 +27,9 @@ public class UserView implements View {
     @Override
     public void showResults(Request request) {
         this.mode=(String)request.get("mode");
+        role = (String)request.get("role");
+        username = (String) request.get("nomeUtente");
+        password = (String) request.get("password");
 
     }
 
@@ -62,6 +69,14 @@ public class UserView implements View {
 
                 break;
 
+            case "viewUser":
+                List<User> users = userService.getAlluser();
+                System.out.println("-----Lista utenti registrati-----");
+                System.out.println();
+                users.forEach(user->System.out.println(users));
+
+                break;
+
         }
 
     }
@@ -75,7 +90,10 @@ public class UserView implements View {
 
     @Override
     public void submit() {
-
+        Request request = new Request();
+        request.put("role", role);
+        request.put("nomeUtente", username);
+        request.put("password", password);
         MainDispatcher.getInstance().callAction("Login", "doControl",null);
 
     }

@@ -6,7 +6,7 @@ public class Gomma {
     private String typevehicle;
     private String model;
     private String manufacturer;
-    private double quantity;
+    private int quantity;
     private double price;
     private double width;
     private double height;
@@ -16,7 +16,7 @@ public class Gomma {
     private String season;
 
 
-    public Gomma(Integer g_id, String typevehicle, String model, String manufacturer, double quantity, double price, double width, double height, double diameter, double weight, String speed, String season) {
+    public Gomma(Integer g_id, String typevehicle, String model, String manufacturer, int quantity, double price, double width, double height, double diameter, double weight, String speed, String season) {
         G_id = g_id;
         this.typevehicle = typevehicle;
         this.model = model;
@@ -47,9 +47,9 @@ public class Gomma {
         this.manufacturer = manufacturer;
     }
 
-    public double getQuantity() { return quantity; }
+    public int getQuantity() { return quantity; }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

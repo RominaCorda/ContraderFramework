@@ -48,7 +48,7 @@ public class GommaView implements View {
                 System.out.println("Produttore:");
                 String manufacturer = getInput();
                 System.out.println("Quantità:");
-                double quantity = Double.parseDouble(getInput());
+                int quantity = Integer.parseInt(getInput());
                 System.out.println("Prezzo:");
                 double price = Double.parseDouble(getInput());
                 System.out.println("Larghezza:");
@@ -65,10 +65,30 @@ public class GommaView implements View {
                 String season = getInput();
                 gommaService.insertGomma(new Gomma(null, typevehicle, model, manufacturer, quantity,  price, width, height, diameter, weight, speed, season));
                 break;
+            case "update":
+                System.out.println(" ----Aggiungi Pezzi---- ");
+                System.out.println("Scegli veicolo ( auto| moto| commerciale| )");
+                String type = getInput();
+                System.out.println("Scegli Modello Gomma:");
+                String mod = getInput();
+                final int idFromGomma = gommaService.getIdFromGomma(type, mod);
+                Scanner in= new Scanner(System.in);
+                System.out.println("Quantità da inserire: ");
+                int quant =in.nextInt();
+                gommaService.updateQuantity(quant, idFromGomma);
+                break;
+
             case "allBrandForVehicle":
                 System.out.println("Scegli il tuo veicolo ( auto| moto| commerciale| )");
-                String type = getInput();
+                type = getInput();
                 List<String> brands = gommaService.getAllManufacturerForTypeVehicle(type);
+
+               //if (brands.isEmpty()) {                                                ***************************
+               //    System.out.println(" ----Veicolo non disponibile---- ");           ***************************
+               //} else {                                                               ***************************
+               //    brands.forEach(gomma -> System.out.println(brands));               ***************************
+               //}                                                                      ***************************
+
                 System.out.println(" ----Brand disponibili---- ");
                 System.out.println();
                 brands.forEach(String -> System.out.println(String));
@@ -84,20 +104,26 @@ public class GommaView implements View {
             case "allSizeForVehicle":
                 System.out.println("Scegli il tuoi veicolo ( auto| moto| commerciale| )");
                 type = getInput();
-                Scanner in= new Scanner(System.in);
-                System.out.println("Pezzi:  ");
-                double quant = in.nextDouble();
+               Scanner in1= new Scanner(System.in);
                 System.out.println("Larghezza:  ");
-                in.nextLine();
-                double wid = in.nextDouble();
+                double wid = Double.parseDouble(getInput());
+               // in1.nextLine();
+               // double wid = in1.nextDouble();
                 System.out.println("Altezza:  ");
-                in.nextLine();
-                double heig = in.nextDouble();
+                double heig = Double.parseDouble(getInput());
+               //in1.nextLine();
+               //double heig = in1.nextDouble();
                 System.out.println("Diametro:  ");
-                in.nextLine();
-                double diam = in.nextDouble();
-                List<Gomma> listaSize = gommaService.getAllGommeForSize(type, quant, wid, heig, diam);
-                listaSize.forEach(gomma -> System.out.println(gomma));
+                double diam = Double.parseDouble(getInput());
+              //  in1.nextLine();
+              //  double diam = in1.nextDouble();
+                List<Gomma> listaSize = gommaService.getAllGommeForSize(type, wid, heig, diam);
+                if (listaSize.isEmpty()){
+                    System.out.println(" ----Dimensione non disponibile---- ");
+                } else {
+                    listaSize.forEach(gomma -> System.out.println(gomma));
+                }
+                break;
         }
     }
 

@@ -14,9 +14,11 @@ public class HomeView implements View {
     private String password;
 
     public void showResults(Request request) {
-        role = (String) request.get("role");
-        nomeUtente = (String) request.get("nomeUtente");
-        password = (String) request.get("password");
+        if(request!= null) {
+            role = (String) request.get("role");
+            nomeUtente = (String) request.get("nomeUtente");
+            password = (String) request.get("password");
+        }
 
     }
 
@@ -43,9 +45,13 @@ public class HomeView implements View {
                 System.out.println("-------MENU-------");
                 System.out.println("");
                 System.out.println("1) Inserisci gomma");
-                System.out.println("2) Visualizza gomme disponibili");
-                System.out.println("3) Visualizza brand gomma per tipologia veicolo ( auto| moto| commerciale| )");
-                System.out.println("4) Logout");
+                System.out.println("2) Aggiorna gomma ");
+                System.out.println("3) Visualizza gomme disponibili");
+                System.out.println("4) Visualizza utenti registrati");
+                System.out.println("5) Visualizza brand gomma per tipologia veicolo ( auto| moto| commerciale| )");
+                System.out.println("6) Visualizza Veicoli");
+                System.out.println("7) Inserisci Veicolo");
+                System.out.println("8) Logout");
                 this.choice = Integer.parseInt(getInput());
         }
     }
@@ -76,15 +82,32 @@ public class HomeView implements View {
                 break;
 
             case "Admin":
-                if (choice < 1 || choice > 4) {
+                if (choice < 1 || choice > 8) {
                     Request request = new Request();
                     request.put("role", role);
                     request.put("nomeUtente", nomeUtente);
                     request.put("password", password);
                     MainDispatcher.getInstance().callAction("Home", "doControl", request);
                 }
-                else if (choice == 4)
+                if (choice == 8)
                     MainDispatcher.getInstance().callAction("Login", "doControl", null);
+                if (choice==4) {
+                    Request request = new Request();
+                    request.put("choice", choice);
+                    request.put("role", role);
+                    request.put("nomeUtente", nomeUtente);
+                    request.put("password", password);
+                    MainDispatcher.getInstance().callAction("User","doControl",request);
+                }
+
+                if(choice==6 || choice==7){
+                    Request request = new Request();
+                    request.put("choice", choice);
+                    request.put("role", role);
+                    request.put("nomeUtente", nomeUtente);
+                    request.put("password", password);
+                    MainDispatcher.getInstance().callAction("Vehicle", "doControl", request);
+                }
                 else {
                     Request request = new Request();
                     request.put("choice", choice);
@@ -95,6 +118,7 @@ public class HomeView implements View {
 
 
                 }
+                break;
         }
 
     }

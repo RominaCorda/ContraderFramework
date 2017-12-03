@@ -7,7 +7,17 @@ public class UserController implements Controller {
 
     @Override
     public void doControl(Request request) {
-        request.put("mode", "insert");
+        int choice =(int) request.get("choice");
+        switch (choice){
+            case 0:
+                request.put("mode", "insert");
+                break;
+            case 4:
+                request.put("mode","viewUser");
+                break;
+
+        }
+        //request.put("mode", "insert");
 
 
         MainDispatcher.getInstance().callView("User", request);

@@ -4,9 +4,9 @@ import main.ConnectionSingleton;
 import main.controller.GestoreEccezioni;
 import main.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     private final String QUERY_INSERT = "insert into users (U_id, username, password, firstname, lastname, dateofbirth, CF, businessname, vat, town, CAP, city, address, telephone, role) values (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -41,6 +41,42 @@ public class UserDAO {
             GestoreEccezioni.getInstance().gestisciEccezione(e);
             return false;
         }
+
+    }
+
+    public List<User> getAlluser(){
+        List<User> users = new ArrayList<>();
+        Connection connection = ConnectionSingleton.getInstance();
+        String var = "User";
+        String query_user = "SELECT * from users WHERE role = \""+var+"\"";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query_user);
+            while (resultSet.next()){
+                int U_id = resultSet.getInt("U_id");
+                String username = resultSet.getString("username");
+                String password = "*******";
+                String firstname = resultSet.getString("firstname");
+                String lastname = resultSet.getString("lastname");
+                String dateofbirth = resultSet.getString("dateofbirth");
+                String CF = resultSet.getString("CF");
+                String businessname = resultSet.getString("businessname");
+                String vat = "*******";
+                String town = resultSet.getString("town");
+                String CAP = resultSet.getString("CAP");
+                String city = resultSet.getString("city");
+                String address = resultSet.getString("address");
+                String telephone = resultSet.getString("telephone");
+                String role = resultSet.getString("role");
+                users.add(new User(U_id, username, password, firstname, lastname, dateofbirth, CF, businessname, vat, town, CAP, city, address, telephone, role));
+
+            }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } return users;
 
     }
 }

@@ -1,5 +1,6 @@
 package main.dao;
 
+import com.sun.org.apache.regexp.internal.RE;
 import main.ConnectionSingleton;
 import main.controller.GestoreEccezioni;
 import main.model.Gomma;
@@ -46,7 +47,7 @@ public class GommaDAO {
                 String typevehicle = resultSet.getString("typevehicle");
                 String model = resultSet.getString("model");
                 String manufacturer = resultSet.getString("manufacturer");
-                double quantity = resultSet.getDouble("quantity");
+                int quantity = resultSet.getInt("quantity");
                 double price = resultSet.getDouble("price");
                 double width = resultSet.getDouble("width");
                 double height = resultSet.getDouble("height");
@@ -60,17 +61,52 @@ public class GommaDAO {
         }
         catch (SQLException e) {
             e.printStackTrace();
-        }
+         }
         return gommaBrand;
 
     }
 
 
 
-   public List<Gomma> getAllGommeForSize(String type, Double quant, Double wid, Double heig, Double diam){
+
+    public int getIdFromGomma (String type, String mod) {
+        int G_id= 0;
+        Connection connection = ConnectionSingleton.getInstance();
+        String queryQuan ="SELECT G_id FROM gomme WHERE  typevehicle=\""+type+"\" AND model=\""+mod+"\"";
+
+            try {
+                Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(queryQuan);
+                 while (resultSet.next()) {
+                     G_id = resultSet.getInt("G_id");
+                                      }
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return G_id;
+
+        }
+
+    public void updateQuantity (int quant, int id) {
+        Connection connection = ConnectionSingleton.getInstance();
+        String queryUpdate = "UPDATE gomme SET quantity = \"" + quant + "\"  WHERE G_id=\"" + id + "\"";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(queryUpdate);
+
+            final boolean execute = preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+   public List<Gomma> getAllGommeForSize(String type, Double wid, Double heig, Double diam){
       List<Gomma> gommaSize = new ArrayList<>();
         Connection connection=ConnectionSingleton.getInstance();
-        String querySize="SELECT * FROM gomme WHERE typevehicle=\""+type+"\"  AND quantity =\""+quant+"\" AND width =\""+wid+"\" AND height =\""+heig+"\" AND diameter =\""+diam+"\"";
+        String querySize="SELECT * FROM gomme WHERE typevehicle=\""+type+"\" AND width =\""+wid+"\" AND height =\""+heig+"\" AND diameter =\""+diam+"\"";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(querySize);
@@ -79,7 +115,7 @@ public class GommaDAO {
                 String typevehicle = resultSet.getString("typevehicle");
                 String model = resultSet.getString("model");
                 String manufacturer = resultSet.getString("manufacturer");
-                double quantity = resultSet.getDouble("quantity");
+                int quantity = resultSet.getInt("quantity");
                 double price = resultSet.getDouble("price");
                 double width = resultSet.getDouble("width");
                 double height = resultSet.getDouble("height");
@@ -96,15 +132,6 @@ public class GommaDAO {
     }
 
 
-
-
-
-
-
-
-
-
-
     public List<Gomma> getAllGomme () {
         List<Gomma> gomme = new ArrayList<>();
         Connection connection = ConnectionSingleton.getInstance();
@@ -116,7 +143,7 @@ public class GommaDAO {
                String typevehicle = resultSet.getString("typevehicle");
                String model = resultSet.getString("model");
                String manufacturer = resultSet.getString("manufacturer");
-               double quantity = resultSet.getDouble("quantity");
+               int quantity = resultSet.getInt("quantity");
                double price = resultSet.getDouble("price");
                double width = resultSet.getDouble("width");
                double height = resultSet.getDouble("height");
@@ -140,7 +167,7 @@ public class GommaDAO {
             preparedStatement.setString( 1, gomma.getTypevehicle());
             preparedStatement.setString(2, gomma.getModel());
             preparedStatement.setString(3, gomma.getManufacturer());
-            preparedStatement.setDouble(4, gomma.getQuantity());
+            preparedStatement.setInt(4, (int) gomma.getQuantity());
             preparedStatement.setDouble(5, gomma.getPrice());
             preparedStatement.setDouble(6, gomma.getWidth());
             preparedStatement.setDouble(7, gomma.getHeight());

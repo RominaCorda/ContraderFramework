@@ -2,15 +2,15 @@ package main.model;
 
 public class Vehicle {
 
-    private int V_id;
+    private Integer V_id;
     private String brand;
     private String model;
     private String power;
     private String version;
     private String capacity;
 
-    public Vehicle(int v_id, String brand, String model, String power, String version, String capacity) {
-        V_id = v_id;
+    public Vehicle(Integer v_id, String brand, String model, String power, String version, String capacity) {
+        this.V_id = v_id;
         this.brand = brand;
         this.model = model;
         this.power = power;
@@ -92,11 +92,13 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Brand: " + brand +
-                "\nModel: " + model +
-                "\nPower: " + power +
-                "\nVersion: " + version +
-                "\nCapacity: " + capacity +
+        return "Vehicle;" +
+                "\n V_id:"+ V_id +
+                "\n Brand: " + brand +
+                "\n Model: " + model +
+                "\n Power: " + power +
+                "\n Version: " + version +
+                "\n Capacity: " + capacity +
                 "\n";
     }
 }
