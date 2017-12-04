@@ -7,6 +7,7 @@ import java.util.List;
 
 public class VehicleService {
 
+
     private VehicleDAO vehicleDAO;
     public VehicleService(){
         this.vehicleDAO = new VehicleDAO();

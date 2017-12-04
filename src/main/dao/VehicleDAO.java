@@ -19,7 +19,7 @@ public class VehicleDAO {
         Connection connection = ConnectionSingleton.getInstance();
         String queryVehicleAll = "SELECT * FROM vehicle";
         try {
-            Statement statement = (Statement) ConnectionSingleton.getInstance();
+            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryVehicleAll);
                 while (resultSet.next()){
                     int V_id = resultSet.getInt("V_id");
